@@ -16,6 +16,8 @@ Here you will find a number of application guides and technical notes.
    FAQ/accessing-hawk.rst
    FAQ/information-sources.rst
    FAQ/hardware-and-software-resources.rst
+   FAQ/interactive-use.rst
+   FAQ/running-jobs.rst
    FAQ/general.rst
 
 Indices and tables
