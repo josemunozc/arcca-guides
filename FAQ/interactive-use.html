@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Use &mdash; ARCCA Guides 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running Jobs" href="running-jobs.html" />
+    <link rel="prev" title="Hardware and Software resources" href="hardware-and-software-resources.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> ARCCA Guides
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">FAQ:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="accessing-hawk.html">Accessing Hawk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="information-sources.html">Information Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware-and-software-resources.html">Hardware and Software resources</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interactive Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-the-login-nodes-used-for">What are the login nodes used for?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-environment-modules">What are Environment Modules?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-compile-and-link-my-code">How do I compile and link my code?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#can-i-use-x-windows-applications-on-arcca">Can I use X-Windows applications on ARCCA?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running-jobs.html">Running Jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ARCCA Guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Interactive Use</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/FAQ/interactive-use.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="interactive-use">
+<h1>Interactive Use<a class="headerlink" href="#interactive-use" title="Permalink to this headline"></a></h1>
+<section id="what-are-the-login-nodes-used-for">
+<h2>What are the login nodes used for?<a class="headerlink" href="#what-are-the-login-nodes-used-for" title="Permalink to this headline"></a></h2>
+<p>The login nodes are for compiling, debugging, and file editing activities. They
+are intended for interactive SSH sessions, file editing, compiling, debugging
+and managing jobs in the job scheduler. They are reserved for activities which
+do not consume lots of processing or memory resource. Any job dedicated to
+computing must be run on a compute node.</p>
+</section>
+<section id="what-are-environment-modules">
+<h2>What are Environment Modules?<a class="headerlink" href="#what-are-environment-modules" title="Permalink to this headline"></a></h2>
+<p>ARCCA continually updates application packages, compilers, communications
+libraries, tools, and math libraries. To facilitate this task and to provide a
+uniform mechanism for accessing different revisions of software, ARCCA uses the
+Environment Modules utility.</p>
+<p>Environment Modules are predefined environmental settings which can be applied
+and removed dynamically. They are usually used to manage different versions of
+applications, by modifying shell variables such as PATH and MANPATH.</p>
+<p>Modules are controlled through the <code class="docutils literal notranslate"><span class="pre">module</span></code> command. Common tasks are shown
+here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>  <span class="n">Show</span> <span class="n">available</span> <span class="n">modules</span>
+<span class="n">module</span> <span class="n">load</span> <span class="o">&lt;</span><span class="n">modulename</span><span class="o">&gt;</span>      <span class="n">Load</span> <span class="n">a</span> <span class="n">module</span>
+<span class="n">module</span> <span class="n">unload</span> <span class="o">&lt;</span><span class="n">modulename</span><span class="o">&gt;</span>    <span class="n">Unload</span> <span class="n">a</span> <span class="n">module</span>
+<span class="n">module</span> <span class="n">swap</span> <span class="o">&lt;</span><span class="n">modulename</span><span class="o">&gt;</span>      <span class="n">Swap</span> <span class="n">a</span> <span class="n">loaded</span> <span class="n">module</span> <span class="n">to</span> <span class="n">a</span> <span class="n">different</span> <span class="n">version</span>
+<span class="n">module</span> <span class="n">purge</span>  <span class="n">Unload</span> <span class="nb">all</span> <span class="n">modules</span>
+<span class="n">module</span> <span class="n">show</span>   <span class="n">Show</span> <span class="n">the</span> <span class="n">settings</span> <span class="n">that</span> <span class="n">a</span> <span class="n">module</span> <span class="n">will</span> <span class="n">implement</span>
+<span class="n">module</span> <span class="n">help</span>   <span class="n">Display</span> <span class="n">information</span> <span class="n">about</span> <span class="n">the</span> <span class="n">module</span> <span class="n">command</span>
+<span class="n">module</span> <span class="n">help</span> <span class="o">&lt;</span><span class="n">modulename</span><span class="o">&gt;</span>      <span class="n">Display</span> <span class="n">information</span> <span class="n">about</span> <span class="n">module</span> <span class="o">&lt;</span><span class="n">modulename</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Please see the <em>Quick Start User Guide</em> for more detailed information.</p>
+</section>
+<section id="how-do-i-compile-and-link-my-code">
+<h2>How do I compile and link my code?<a class="headerlink" href="#how-do-i-compile-and-link-my-code" title="Permalink to this headline"></a></h2>
+<p>Compilation and linking is very application-dependent. However, the common
+first step should be to load the desired compiler and MPI environment.  Please
+see the FAQ describing what compilers are available on Hawk.</p>
+<p>For example, for Intel compilers and Intel MPI, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">compiler</span><span class="o">/</span><span class="n">intel</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">mpi</span><span class="o">/</span><span class="n">intel</span>
+</pre></div>
+</div>
+<p>This will make the compilers available in your path and will set environment
+variables such that compiler-dependent and MPI libraries are linked correctly
+into your application. (Please remember to load the same modules when it comes
+time to run the application via a batch job script.)</p>
+<p>Please note, the Intel compilers generally provide more efficient codes, but
+for some open-source software the Intel compilers are not compatible and the
+GNU open-source compilers should be used (module load compiler/gnu).</p>
+<p>Other libraries that your code uses may also be available via modules. Use
+<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> to check, and <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;library&gt;</span></code> to load the library
+before compiling and linking. A detailed guide to compiling and linking codes
+is available in the ARCCA <em>Quick Start User Guide</em>.</p>
+</section>
+<section id="can-i-use-x-windows-applications-on-arcca">
+<h2>Can I use X-Windows applications on ARCCA?<a class="headerlink" href="#can-i-use-x-windows-applications-on-arcca" title="Permalink to this headline"></a></h2>
+<p>X-Windows applications can be run on the Hawk login nodes. To enable your local
+machine to act as the X display, log in to Hawk by using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ssh –Y &lt;username&gt;&lt;at&gt;ravenlogin.arcca.cf.ac.uk
+</pre></div>
+</div>
+<p>You will of course need to have an X-Windows environment running on your local
+machine in order to display the output from the remote application.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hardware-and-software-resources.html" class="btn btn-neutral float-left" title="Hardware and Software resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="running-jobs.html" class="btn btn-neutral float-right" title="Running Jobs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Jose Munoz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

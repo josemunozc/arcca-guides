@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running Jobs &mdash; ARCCA Guides 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="General" href="general.html" />
+    <link rel="prev" title="Interactive Use" href="interactive-use.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> ARCCA Guides
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">FAQ:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="accessing-hawk.html">Accessing Hawk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="information-sources.html">Information Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware-and-software-resources.html">Hardware and Software resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive-use.html">Interactive Use</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-the-job-scheduler-on-hawk">What is the Job Scheduler on Hawk?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-run-a-job-on-hawk">How do I run a job on Hawk?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#where-do-i-find-the-output-from-my-job">Where do I find the output from my job?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#is-there-a-way-to-get-status-information-on-the-nodes-in-the-cluster">Is there a way to get status information on the nodes in the cluster?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#my-job-terminates-without-any-message-or-warnings">My job terminates without any message or warnings.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#my-program-which-use-to-work-stopped-working">My program, which use to work, stopped working.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#can-i-get-email-notification-when-a-job-finishes">Can I get email notification when a job finishes?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#my-code-uses-both-message-passing-and-thread-parallelism-how-do-i-run-it">My code uses both message passing and thread parallelism. How do I run it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-limits-are-imposed-on-jobs">What limits are imposed on jobs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#my-job-takes-longer-than-the-maximum-walltime-how-can-i-run-it">My job takes longer than the maximum walltime. How can I run it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-isn-t-my-job-just-running">Why isn’t my job just running?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#my-job-seems-to-be-running-slowly-what-should-i-do">My job seems to be running slowly. What should I do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-kill-a-running-job">How do I kill a running job?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-cant-kill-a-job-what-should-i-do">I can’t kill a job. What should I do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-have-a-technical-problem-when-running-jobs-who-should-i-contact">I have a technical problem when running jobs. Who should I contact?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ARCCA Guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Running Jobs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/FAQ/running-jobs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-jobs">
+<h1>Running Jobs<a class="headerlink" href="#running-jobs" title="Permalink to this headline"></a></h1>
+<section id="what-is-the-job-scheduler-on-hawk">
+<h2>What is the Job Scheduler on Hawk?<a class="headerlink" href="#what-is-the-job-scheduler-on-hawk" title="Permalink to this headline"></a></h2>
+<p>SLURM, developed by SchedMD, is the job scheduler used on Hawk.
+Advice on using and setting up job scripts are provided in the ARCCA <em>Quick
+Start User Guide</em>.</p>
+</section>
+<section id="how-do-i-run-a-job-on-hawk">
+<h2>How do I run a job on Hawk?<a class="headerlink" href="#how-do-i-run-a-job-on-hawk" title="Permalink to this headline"></a></h2>
+<p>A job is submitted with a command called <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>. The job can be submitted
+either directly from the command line or using a job script that contains
+directives which <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> can understand. For example a job script
+(myjob.q) can contain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --partition=htc</span>
+<span class="c1">#SBATCH --nnodes=1</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="c1">#SBATCH --account=scwXXXX</span>
+</pre></div>
+</div>
+<p>The job (or batch job) would then be submitted with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sbatch myjob.q
+</pre></div>
+</div>
+<p>Depending on the available resources on Hawk the job will either run
+immediately or be held in a queue until the resources are available (such as a
+number of CPUs).</p>
+</section>
+<section id="where-do-i-find-the-output-from-my-job">
+<h2>Where do I find the output from my job?<a class="headerlink" href="#where-do-i-find-the-output-from-my-job" title="Permalink to this headline"></a></h2>
+<p>When a job is run it is important to know where it was run on the system, we
+recommend jobs are run within the /scratch filesystem. SLURM also writes the
+output which normally would go to the screen (the standard output and error)
+to a file. This is defined within the job directives, for example to save the
+standard output and error into files output.txt and error.txt in the directory
+you submitted the job, the directives would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH –o output.txt</span>
+<span class="c1">#SBATCH –e error.txt</span>
+</pre></div>
+</div>
+<p>These output files, unless explicitly directed elsewhere, will be written to
+the directory from which the job was submitted from (i.e. the directory where
+the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command was issued).</p>
+</section>
+<section id="is-there-a-way-to-get-status-information-on-the-nodes-in-the-cluster">
+<h2>Is there a way to get status information on the nodes in the cluster?<a class="headerlink" href="#is-there-a-way-to-get-status-information-on-the-nodes-in-the-cluster" title="Permalink to this headline"></a></h2>
+<p>The command <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> can be used to find the status of the nodes within the
+queues on Hawk.</p>
+</section>
+<section id="my-job-terminates-without-any-message-or-warnings">
+<h2>My job terminates without any message or warnings.<a class="headerlink" href="#my-job-terminates-without-any-message-or-warnings" title="Permalink to this headline"></a></h2>
+<p>If you know the SLURM job id number you can find out information using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ scontrol show job &lt;jobid&gt;
+</pre></div>
+</div>
+<p>for recently ended jobs (a few minutes). More generally, you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sacct -j &lt;jobid&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sacct</span></code> allows you to query different information fields, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$sacct -j &lt;jobid&gt; --format=JobID,User,JobName,Partition,Account,AllocCPUS,\
+State,ExitCode,NNodes,NCPUS,CPUTime,ReqMem,TotalCPU,Elapsed,Submit
+</pre></div>
+</div>
+<p>See sacct manual information for all the different field options.</p>
+<p>If it is not clear as to why the job failed please <a class="reference external" href="mailto:arcca-help&#37;&#52;&#48;cardiff&#46;ac&#46;uk">contact us</a>.</p>
+</section>
+<section id="my-program-which-use-to-work-stopped-working">
+<h2>My program, which use to work, stopped working.<a class="headerlink" href="#my-program-which-use-to-work-stopped-working" title="Permalink to this headline"></a></h2>
+<p>ARCCA tries to reduce the impact of maintenance work on Hawk but occasionally
+the operating system or software modules can change. This may impact some
+software in unexpected ways. If the code is compiled by the user then please
+try recompiling the program which may link the new locations of libraries.</p>
+<p>If the software is provided by a module please report the error to ARCCA.</p>
+</section>
+<section id="can-i-get-email-notification-when-a-job-finishes">
+<h2>Can I get email notification when a job finishes?<a class="headerlink" href="#can-i-get-email-notification-when-a-job-finishes" title="Permalink to this headline"></a></h2>
+<p>A SLURM directive provides an option to email the user when the job reaches a
+certain status such as completing. The SLURM directives are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH –-mail-type=BEGIN,END,FAIL</span>
+<span class="c1">#SBATCH --mail-user=&lt;user@cardiff.ac.uk&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">BEGIN</span></code>, <code class="docutils literal notranslate"><span class="pre">END</span></code> and <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> instructs SLURM to send email when the job
+starts execution, finishes successfully and/or fails. Email is sent to the
+provided email address. Note replace <code class="docutils literal notranslate"><span class="pre">&lt;user&#64;cardiff.ac.uk&gt;</span></code> with your email
+address!</p>
+</section>
+<section id="my-code-uses-both-message-passing-and-thread-parallelism-how-do-i-run-it">
+<h2>My code uses both message passing and thread parallelism. How do I run it?<a class="headerlink" href="#my-code-uses-both-message-passing-and-thread-parallelism-how-do-i-run-it" title="Permalink to this headline"></a></h2>
+<p>Hybrid programming is possible by specifying the total number of CPUs in the
+SLURM directives (MPI tasks multiplied by OpenMP threads). For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SLURM --nodes=1</span>
+<span class="c1">#SLURM --ntasks=8</span>
+<span class="c1">#SLURM --ntasks-per-node=8</span>
+<span class="c1">#SLURM --cpus-per-task=2</span>
+</pre></div>
+</div>
+<p>This will reserve one chunk of resource in 1 node with 16 CPUs, the chunk will
+have 8 MPI tasks each with 2 (CPUs) OpenMP threads. Another example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SLURM --nodes=2</span>
+<span class="c1">#SLURM --ntasks=4</span>
+<span class="c1">#SLURM --ntasks-per-node=4</span>
+<span class="c1">#SLURM --cpus-per-task=4</span>
+</pre></div>
+</div>
+<p>This will reserve 2 chunks of resource, 1 in per node, 2 nodes in total, where
+each chunk has 16 CPUs and the 16 CPUs are split with 4 MPI tasks and each MPI
+task has 4 (CPUs) OpenMP threads.</p>
+<p>It can also be important to compile with the thread-safe MPI compiler. To do
+this automatically with the Intel MPI libraries use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpiifort –openmp hello.f90 –o hello
+</pre></div>
+</div>
+<p>Where mpiifort will automatically use the thread-safe library due to the
+<code class="docutils literal notranslate"><span class="pre">-openmp</span></code> option.</p>
+</section>
+<section id="what-limits-are-imposed-on-jobs">
+<h2>What limits are imposed on jobs?<a class="headerlink" href="#what-limits-are-imposed-on-jobs" title="Permalink to this headline"></a></h2>
+<p>By default there are number of limits to reduce the impact that one user can
+have on the system. These are:</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Partition limits on Hawk</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Partition Name</p></th>
+<th class="head"><p>Number of Nodes</p></th>
+<th class="head"><p>Purpose</p></th>
+<th class="head"><p>Maximum running jobs per user</p></th>
+<th class="head"><p>Maximum submitted jobs per user</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>compute</p></td>
+<td><p>134</p></td>
+<td><p>Parallel and MPI jobs</p></td>
+<td><p>10</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>compute_amd</p></td>
+<td><p>64</p></td>
+<td><p>Parallel and MPI jobs using AMD EPYC 7502</p></td>
+<td><p>10</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p>highmem</p></td>
+<td><p>26</p></td>
+<td><p>Large memory (384GB) jobs</p></td>
+<td><p>10</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpu</p></td>
+<td><p>13</p></td>
+<td><p>GPU (CUDA) jobs - P100</p></td>
+<td><p>5</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>gpu_v100</p></td>
+<td><p>15</p></td>
+<td><p>GPU (CUDA) jobs - V100</p></td>
+<td><p>5</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>HTC</p></td>
+<td><p>26</p></td>
+<td><p>High Throughput Serial jobs</p></td>
+<td><p>10</p></td>
+<td><p>40</p></td>
+</tr>
+<tr class="row-even"><td><p>dev</p></td>
+<td><p>2</p></td>
+<td><p>Testing and development</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<p>These limits can be modified if the job requirement exceeds these parameters,
+please <a class="reference external" href="mailto:arcca-help&#37;&#52;&#48;cardiff&#46;ac&#46;uk">contact ARCCA</a> for more details.</p>
+</section>
+<section id="my-job-takes-longer-than-the-maximum-walltime-how-can-i-run-it">
+<h2>My job takes longer than the maximum walltime. How can I run it?<a class="headerlink" href="#my-job-takes-longer-than-the-maximum-walltime-how-can-i-run-it" title="Permalink to this headline"></a></h2>
+<p>Please <a class="reference external" href="mailto:arcca-help&#37;&#52;&#48;cardiff&#46;ac&#46;uk">contact ARCCA</a> where we may be able to grant you access to special
+queue limits for your jobs (depending on requirements).</p>
+<p>ARCCA recommends running jobs with job walltime limits where possible since
+smaller jobs can be run more efficiently by the job scheduler.</p>
+</section>
+<section id="why-isn-t-my-job-just-running">
+<h2>Why isn’t my job just running?<a class="headerlink" href="#why-isn-t-my-job-just-running" title="Permalink to this headline"></a></h2>
+<p>SLURM attempts to use HAWK as efficiently as possible given the attributes of
+jobs and the resources available. If the job is queueing then it may be just
+waiting for resources to become free (if possible reduce the walltime limit
+requested to allow the job scheduler to fit your job into small gaps within the
+queueing system).</p>
+<p>Please see the FAQ regarding finding out more details about your job.</p>
+</section>
+<section id="my-job-seems-to-be-running-slowly-what-should-i-do">
+<h2>My job seems to be running slowly. What should I do?<a class="headerlink" href="#my-job-seems-to-be-running-slowly-what-should-i-do" title="Permalink to this headline"></a></h2>
+<p>First make sure your job is running on the high performance filesystem on
+<code class="docutils literal notranslate"><span class="pre">/scratch</span></code>.  The <code class="docutils literal notranslate"><span class="pre">/home</span></code> filesystem is provided via NFS which is not
+suitable for work.</p>
+<p>If you have compiled code yourself then profile your code to see where the
+bottlenecks are. This can be done with the <code class="docutils literal notranslate"><span class="pre">–pg</span></code> option to the compiler.
+When the software is run a <code class="docutils literal notranslate"><span class="pre">gmon.out</span></code> file is created and can be viewed using
+gprof.</p>
+<p>Occasionally, poor performance can be caused by issues on the compute nodes.</p>
+<p>Please <a class="reference external" href="mailto:arcca-help&#37;&#52;&#48;cardiff&#46;ac&#46;uk">contact ARCCA</a> if you suspect there may be a problem on the cluster or
+if you require assistance with profiling your code.</p>
+</section>
+<section id="how-do-i-kill-a-running-job">
+<h2>How do I kill a running job?<a class="headerlink" href="#how-do-i-kill-a-running-job" title="Permalink to this headline"></a></h2>
+<p>The SLURM batch manager used on Hawk provides the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scancel</span> <span class="o">&lt;</span><span class="n">job_identifier</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>that allows users to delete their current jobs, where <code class="docutils literal notranslate"><span class="pre">&lt;job_identifier&gt;</span></code> is
+the job id number assigned to the job when submitted under control of the
+<code class="docutils literal notranslate"><span class="pre">sbatch</span></code> or <code class="docutils literal notranslate"><span class="pre">srun</span></code> commands.</p>
+</section>
+<section id="i-cant-kill-a-job-what-should-i-do">
+<h2>I can’t kill a job. What should I do?<a class="headerlink" href="#i-cant-kill-a-job-what-should-i-do" title="Permalink to this headline"></a></h2>
+<p>A job that cannot be killed is a very unusual circumstance. First make sure it
+is your job you are trying to kill and you are the owner of the job. If there
+is no obvious reason why the job cannot be killed please <a class="reference external" href="mailto:arcca-help&#37;&#52;&#48;cardiff&#46;ac&#46;uk">contact ARCCA</a>.</p>
+</section>
+<section id="i-have-a-technical-problem-when-running-jobs-who-should-i-contact">
+<h2>I have a technical problem when running jobs. Who should I contact?<a class="headerlink" href="#i-have-a-technical-problem-when-running-jobs-who-should-i-contact" title="Permalink to this headline"></a></h2>
+<p>ARCCA can provide advice to help solve technical problems. We may also raise
+the issue with Hawk’s supplier to support the resolution of incidents. Please
+do not hesitate to <a class="reference external" href="mailto:arcca-help&#37;&#52;&#48;cardiff&#46;ac&#46;uk">contact ARCCA</a> should you require any assistance with any
+aspect of the service.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="interactive-use.html" class="btn btn-neutral float-left" title="Interactive Use" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="general.html" class="btn btn-neutral float-right" title="General" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Jose Munoz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
