@@ -43,7 +43,7 @@
 <li class="toctree-l1"><a class="reference internal" href="information-sources.html">Information Sources</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware and Software resources</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#what-computer-systems-are-available">What computer systems are available?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#what-is-the-difference-between-westmere-and-sandy-bridge-nodes">What is the difference between Westmere and Sandy Bridge Nodes?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-the-difference-between-skylake-and-rome-nodes">What is the difference between Skylake and Rome Nodes?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-build-a-program-using-mkl">How to build a program using MKL?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#can-i-import-my-own-binaries">Can I import my own binaries?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-file-systems-are-available">What file systems are available?</a></li>
@@ -89,76 +89,85 @@
 <h1>Hardware and Software resources<a class="headerlink" href="#hardware-and-software-resources" title="Permalink to this headline"></a></h1>
 <section id="what-computer-systems-are-available">
 <h2>What computer systems are available?<a class="headerlink" href="#what-computer-systems-are-available" title="Permalink to this headline"></a></h2>
-<p>ARCCA has a variety of available research computing resources, including a large
-computing cluster – <em>Hawk</em>, a high performance data analytics and AI platform –
-<em>Sparrow</em>, virtual machine hosting capabilities and a flexible data storage facility.
-For more information our services please visit the <a class="reference external" href="https://www.cardiff.ac.uk/advanced-research-computing/services">ARCCA services</a> site.</p>
+<p>ARCCA has a variety of available research computing resources, including a
+large computing cluster – <em>Hawk</em>, a high performance data analytics and AI
+platform – <em>Sparrow</em>, virtual machine hosting capabilities and a flexible data
+storage facility. For more information our services please visit the <a class="reference external" href="https://www.cardiff.ac.uk/advanced-research-computing/services">ARCCA
+services</a> site.</p>
 </section>
-<section id="what-is-the-difference-between-westmere-and-sandy-bridge-nodes">
-<h2>What is the difference between Westmere and Sandy Bridge Nodes?<a class="headerlink" href="#what-is-the-difference-between-westmere-and-sandy-bridge-nodes" title="Permalink to this headline"></a></h2>
-<p>The Raven supercomputer system comprises two distinct partitions, the so-called <em>HTC</em>
-system, designed for serial, single processor jobs, the second the so-called <em>MPI or
-HPC partition</em>, designed for close-coupled parallel jobs. The HTC system employs
-Intel Xeon processors that have an architecture that is code-named ‘Westmere’,
-whereas the MPI partition is built from more recent ‘Sandy Bridge’ processors. For
-the user, the main difference is in the number of cores per dual-socket node, where
-the Westmere systems have 12 and Sandy Bridge have 16. This means, for example, that
-for parallel (MPI) jobs run on the HTC system you should specify in job scripts run
-on Westmere:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -l select=2:ncpus=12:mpiprocs=12</span>
+<section id="what-is-the-difference-between-skylake-and-rome-nodes">
+<h2>What is the difference between Skylake and Rome Nodes?<a class="headerlink" href="#what-is-the-difference-between-skylake-and-rome-nodes" title="Permalink to this headline"></a></h2>
+<p>The Hawk supercomputer system comprises several distinct partitions designed
+for different types of jobs. Most of these partitions use Intel Xeon processors
+that have an architecture that is code-named <em>Skylake</em>, whereas the
+<code class="docutils literal notranslate"><span class="pre">compute_amd</span></code> partition is built from AMD EPYC (<em>Rome</em>).</p>
+<p>For the user, the main difference is in the number of cores per dual-socket
+node, where the <em>Skylake</em> partitions have 40 and <em>Rome</em> have 64. This means,
+for example, that for parallel (MPI) jobs run on the <em>Rome</em> partition you
+should specify in job scripts, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBACTH --ntasks=64</span>
+<span class="c1">#SBACTH --ntasks-per-node=64</span>
+<span class="c1">#SBATCH --partition=compute_amd</span>
 </pre></div>
 </div>
-<p>and in job scripts run on Sandy Bridge:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -l select=2:ncpus=16:mpiprocs=16</span>
+<p>(please not that jobs prepared for <code class="docutils literal notranslate"><span class="pre">compute_amd</span></code> must be submitted from the
+<code class="docutils literal notranslate"><span class="pre">cla1</span></code> login node. You can use <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">cla1</span></code> to connect to it.)</p>
+<p>and in job scripts to run on most other partitions with <em>Skylake</em> nodes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBACTH --ntasks=40</span>
+<span class="c1">#SBACTH --ntasks-per-node=40</span>
+<span class="c1">#SBATCH --partition=&lt;partition name&gt;</span>
 </pre></div>
 </div>
-<p>You may also find that some applications are only available on the Westmere systems,
-and others are only available on Sandy Bridge.</p>
-<p>Sandy Bridge offers a number of performance benefits over Westmere, including
-availability of AVX instructions, larger cache and improved memory bandwidth, which
-translates into improved application performance. For a comparison of Westmere and
-Sandy Bridge for a number of open-source applications, please see the User Guide for
-more details.</p>
-<p>Information on the new Intel Haswell Partition to follow.</p>
+<p>You may also find that some applications are only available on the <em>Skylake</em>
+systems, and others are only available on <em>Rome</em>.</p>
+<p>There are a number of differences between <em>Skylake</em> and <em>Rome</em> architectures
+including availability of AVX instructions, cache size and memory bandwidth,
+which translates into potentially different application performance. Please
+<a class="reference external" href="mailto:arcca-help&#37;&#52;&#48;cardiff&#46;ac&#46;uk">contact us</a> if your application is not currently available for <em>Rome</em>.</p>
 </section>
 <section id="how-to-build-a-program-using-mkl">
 <h2>How to build a program using MKL?<a class="headerlink" href="#how-to-build-a-program-using-mkl" title="Permalink to this headline"></a></h2>
 <p>Intel’s Math Kernel Library (MKL) is a library of highly optimized, extensively
-threaded mathematical routines for applications that require high performance. If
-you are using the Intel compilers to build your application, then in most cases it
-will be sufficient to use:</p>
+threaded mathematical routines for applications that require high performance.
+If you are using the Intel compilers to build your application, then in most
+cases it will be sufficient to use:</p>
 <p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">compiler/intel</span></code></p>
-<p>and include the option <code class="docutils literal notranslate"><span class="pre">–mkl</span></code> in your compilation and link commands. (Other forms
-which may be useful are <code class="docutils literal notranslate"><span class="pre">–mkl=sequential</span></code> to use the non-threaded MKL and
-<code class="docutils literal notranslate"><span class="pre">–mkl=cluster</span></code> to use libraries like Scalapack built for Intel MPI.)</p>
-<p>If your requirements do not fit with the above (e.g. you are using 64-bit integers or
-you are using GNU compilers or Open MPI), we recommend that you visit the <a class="reference external" href="https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor/">MKL line
-advisor</a> which provides a tool to generate the required linker input.</p>
+<p>and include the option <code class="docutils literal notranslate"><span class="pre">–mkl</span></code> in your compilation and link commands. (Other
+forms which may be useful are <code class="docutils literal notranslate"><span class="pre">–mkl=sequential</span></code> to use the non-threaded MKL
+and <code class="docutils literal notranslate"><span class="pre">–mkl=cluster</span></code> to use libraries like Scalapack built for Intel MPI.)</p>
+<p>If your requirements do not fit with the above (e.g. you are using 64-bit
+integers or you are using GNU compilers or Open MPI), we recommend that you
+visit the <a class="reference external" href="https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor/">MKL line advisor</a> which provides a tool to generate the required
+linker input.</p>
 </section>
 <section id="can-i-import-my-own-binaries">
 <h2>Can I import my own binaries?<a class="headerlink" href="#can-i-import-my-own-binaries" title="Permalink to this headline"></a></h2>
-<p>We strongly discourage users from importing their own binaries as these will not be
-optimised for our systems. If packages are not available on the HPC facilities and
-users require them they should request, where possible, for ARCCA to install the
-packages from source on our systems (under the modules environment). If there is no
-option but to import a binary it must be compiled for a 64-bit x86-64 architecture.</p>
+<p>We strongly discourage users from importing their own binaries as these will
+not be optimised for our systems. If packages are not available on the HPC
+facilities and users require them they should request, where possible, for
+ARCCA to install the packages from source on our systems (under the modules
+environment). If there is no option but to import a binary it must be compiled
+for a 64-bit x86-64 architecture.</p>
 </section>
 <section id="what-file-systems-are-available">
 <h2>What file systems are available?<a class="headerlink" href="#what-file-systems-are-available" title="Permalink to this headline"></a></h2>
 <p>There are two main file systems accessible to users on Hawk:
-<code class="docutils literal notranslate"><span class="pre">/home</span></code> contains your home directory. At login, the system automatically sets the
-current working directory to your home directory. Store your source code and build
-your executables here. This directory can be accessed from any compute node. Use
-<code class="docutils literal notranslate"><span class="pre">$HOME</span></code> to reference your home directory in scripts.</p>
-<p><code class="docutils literal notranslate"><span class="pre">/scratch</span></code> is the directory in which to store large, temporary files. <code class="docutils literal notranslate"><span class="pre">/scratch</span></code>
-is a Lustre file system designed for parallel and high performance data access from
-within applications. It has been configured to work well with MPI-IO, accessing data
-from many compute nodes. If your jobs have significant input/output requirements,
-change to this directory in your batch scripts and run jobs in this file system.</p>
+<code class="docutils literal notranslate"><span class="pre">/home</span></code> contains your home directory. At login, the system automatically sets
+the current working directory to your home directory. Store your source code
+and build your executables here. This directory can be accessed from any
+compute node. Use <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> to reference your home directory in scripts.</p>
+<p><code class="docutils literal notranslate"><span class="pre">/scratch</span></code> is the directory in which to store large, temporary files.
+<code class="docutils literal notranslate"><span class="pre">/scratch</span></code> is a Lustre file system designed for parallel and high performance
+data access from within applications. It has been configured to work well with
+MPI-IO, accessing data from many compute nodes. If your jobs have significant
+input/output requirements, change to this directory in your batch scripts and
+run jobs in this file system.</p>
 <p>Please note that neither <code class="docutils literal notranslate"><span class="pre">/home</span></code> or <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> file systems are backed up.</p>
-<p>Users must not use /tmp on each compute node for even the temporary storage of large
-data files, as the filling up of this filesystem may cause severe problems on the
-service.</p>
+<p>Users must not use /tmp on each compute node for even the temporary storage of
+large data files, as the filling up of this filesystem may cause severe
+problems on the service.</p>
 </section>
 <section id="where-can-i-store-my-research-data-when-it-is-not-being-used-on-the-arcca-systems-and-is-it-secure">
 <h2>Where can I store my research data when it is not being used on the ARCCA systems and is it secure?<a class="headerlink" href="#where-can-i-store-my-research-data-when-it-is-not-being-used-on-the-arcca-systems-and-is-it-secure" title="Permalink to this headline"></a></h2>

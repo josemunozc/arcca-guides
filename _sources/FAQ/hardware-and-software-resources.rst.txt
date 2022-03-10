@@ -3,84 +3,94 @@ Hardware and Software resources
 
 What computer systems are available?
 ------------------------------------
-ARCCA has a variety of available research computing resources, including a large
-computing cluster – *Hawk*, a high performance data analytics and AI platform – 
-*Sparrow*, virtual machine hosting capabilities and a flexible data storage facility.
-For more information our services please visit the `ARCCA services`_ site. 
+ARCCA has a variety of available research computing resources, including a
+large computing cluster – *Hawk*, a high performance data analytics and AI
+platform – *Sparrow*, virtual machine hosting capabilities and a flexible data
+storage facility. For more information our services please visit the `ARCCA 
+services`_ site. 
 
-What is the difference between Westmere and Sandy Bridge Nodes?
+What is the difference between Skylake and Rome Nodes?
 ---------------------------------------------------------------
-The Raven supercomputer system comprises two distinct partitions, the so-called *HTC*
-system, designed for serial, single processor jobs, the second the so-called *MPI or
-HPC partition*, designed for close-coupled parallel jobs. The HTC system employs 
-Intel Xeon processors that have an architecture that is code-named ‘Westmere’, 
-whereas the MPI partition is built from more recent ‘Sandy Bridge’ processors. For 
-the user, the main difference is in the number of cores per dual-socket node, where
-the Westmere systems have 12 and Sandy Bridge have 16. This means, for example, that 
-for parallel (MPI) jobs run on the HTC system you should specify in job scripts run
-on Westmere::
+The Hawk supercomputer system comprises several distinct partitions designed
+for different types of jobs. Most of these partitions use Intel Xeon processors
+that have an architecture that is code-named *Skylake*, whereas the
+``compute_amd`` partition is built from AMD EPYC (*Rome*).
 
-    #PBS -l select=2:ncpus=12:mpiprocs=12
+For the user, the main difference is in the number of cores per dual-socket
+node, where the *Skylake* partitions have 40 and *Rome* have 64. This means,
+for example, that for parallel (MPI) jobs run on the *Rome* partition you
+should specify in job scripts, for example::
 
-and in job scripts run on Sandy Bridge::
+    #SBATCH --nodes=1
+    #SBACTH --ntasks=64
+    #SBACTH --ntasks-per-node=64
+    #SBATCH --partition=compute_amd
 
-    #PBS -l select=2:ncpus=16:mpiprocs=16
+(please not that jobs prepared for ``compute_amd`` must be submitted from the 
+``cla1`` login node. You can use ``ssh cla1`` to connect to it.)
 
-You may also find that some applications are only available on the Westmere systems,
-and others are only available on Sandy Bridge.
+and in job scripts to run on most other partitions with *Skylake* nodes::
 
-Sandy Bridge offers a number of performance benefits over Westmere, including
-availability of AVX instructions, larger cache and improved memory bandwidth, which
-translates into improved application performance. For a comparison of Westmere and
-Sandy Bridge for a number of open-source applications, please see the User Guide for 
-more details.
+    #SBATCH --nodes=1
+    #SBACTH --ntasks=40
+    #SBACTH --ntasks-per-node=40
+    #SBATCH --partition=<partition name>
 
-Information on the new Intel Haswell Partition to follow.
+You may also find that some applications are only available on the *Skylake*
+systems, and others are only available on *Rome*.
+
+There are a number of differences between *Skylake* and *Rome* architectures
+including availability of AVX instructions, cache size and memory bandwidth,
+which translates into potentially different application performance. Please
+`contact us`_ if your application is not currently available for *Rome*.
 
 How to build a program using MKL?
 ---------------------------------
 Intel’s Math Kernel Library (MKL) is a library of highly optimized, extensively
-threaded mathematical routines for applications that require high performance. If 
-you are using the Intel compilers to build your application, then in most cases it 
-will be sufficient to use:
+threaded mathematical routines for applications that require high performance.
+If you are using the Intel compilers to build your application, then in most
+cases it will be sufficient to use:
 
 ``module load compiler/intel``
 
-and include the option ``–mkl`` in your compilation and link commands. (Other forms
-which may be useful are ``–mkl=sequential`` to use the non-threaded MKL and 
-``–mkl=cluster`` to use libraries like Scalapack built for Intel MPI.)
+and include the option ``–mkl`` in your compilation and link commands. (Other
+forms which may be useful are ``–mkl=sequential`` to use the non-threaded MKL
+and ``–mkl=cluster`` to use libraries like Scalapack built for Intel MPI.)
 
-If your requirements do not fit with the above (e.g. you are using 64-bit integers or
-you are using GNU compilers or Open MPI), we recommend that you visit the `MKL line 
-advisor`_ which provides a tool to generate the required linker input.
+If your requirements do not fit with the above (e.g. you are using 64-bit
+integers or you are using GNU compilers or Open MPI), we recommend that you
+visit the `MKL line advisor`_ which provides a tool to generate the required
+linker input.
 
 Can I import my own binaries?
 -----------------------------
-We strongly discourage users from importing their own binaries as these will not be
-optimised for our systems. If packages are not available on the HPC facilities and
-users require them they should request, where possible, for ARCCA to install the
-packages from source on our systems (under the modules environment). If there is no
-option but to import a binary it must be compiled for a 64-bit x86-64 architecture.
+We strongly discourage users from importing their own binaries as these will
+not be optimised for our systems. If packages are not available on the HPC
+facilities and users require them they should request, where possible, for
+ARCCA to install the packages from source on our systems (under the modules
+environment). If there is no option but to import a binary it must be compiled
+for a 64-bit x86-64 architecture.
 
 What file systems are available?
 --------------------------------
 There are two main file systems accessible to users on Hawk:
-``/home`` contains your home directory. At login, the system automatically sets the
-current working directory to your home directory. Store your source code and build
-your executables here. This directory can be accessed from any compute node. Use
-``$HOME`` to reference your home directory in scripts. 
+``/home`` contains your home directory. At login, the system automatically sets
+the current working directory to your home directory. Store your source code
+and build your executables here. This directory can be accessed from any
+compute node. Use ``$HOME`` to reference your home directory in scripts. 
 
-``/scratch`` is the directory in which to store large, temporary files. ``/scratch`` 
-is a Lustre file system designed for parallel and high performance data access from
-within applications. It has been configured to work well with MPI-IO, accessing data 
-from many compute nodes. If your jobs have significant input/output requirements,
-change to this directory in your batch scripts and run jobs in this file system.
+``/scratch`` is the directory in which to store large, temporary files.
+``/scratch`` is a Lustre file system designed for parallel and high performance
+data access from within applications. It has been configured to work well with
+MPI-IO, accessing data from many compute nodes. If your jobs have significant
+input/output requirements, change to this directory in your batch scripts and
+run jobs in this file system.
 
 Please note that neither ``/home`` or ``/scratch`` file systems are backed up.
 
-Users must not use /tmp on each compute node for even the temporary storage of large
-data files, as the filling up of this filesystem may cause severe problems on the
-service.
+Users must not use /tmp on each compute node for even the temporary storage of
+large data files, as the filling up of this filesystem may cause severe
+problems on the service.
 
 Where can I store my research data when it is not being used on the ARCCA systems and is it secure?
 ---------------------------------------------------------------------------------------------------
